@@ -1,0 +1,38 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node modules and logs (if you use npm)
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json
+
+# Build and packaging
+build/
+dist/
+*.zip
+*.crx
+*.pem
+*.nex
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.history/
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+logs/

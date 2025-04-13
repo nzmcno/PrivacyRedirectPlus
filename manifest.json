@@ -1,0 +1,59 @@
+{
+    "manifest_version": 3,
+    "name": "PrivacyRedirect+",
+    "version": "1.0.0",
+    "description": "Automatically redirect YouTube, Reddit, X and more to their private, open-source alternatives via Farside.link.",
+    "permissions": ["webNavigation", "storage"],
+    "host_permissions": [
+      "*://www.reddit.com/*",
+      "*://twitter.com/*",
+      "*://x.com/*",
+      "*://www.youtube.com/*",
+      "*://instagram.com/*",
+      "*://www.instagram.com/*",
+      "*://tiktok.com/*",
+      "*://www.tiktok.com/*",
+      "*://vm.tiktok.com/*",
+      "*://vt.tiktok.com/*",
+      "*://*.tiktok.com/*",
+      "*://medium.com/*",
+      "*://translate.google.com/*",
+      "*://imgur.com/*",
+      "*://en.wikipedia.org/*",
+      "*://www.imdb.com/*",
+      "*://quora.com/*",
+      "*://stackoverflow.com/*",
+      "*://fandom.com/*",
+      "*://www.fandom.com/*",
+      "*://*.fandom.com/*",
+      "*://genius.com/*",
+      "*://www.genius.com/*",
+      "*://bandcamp.com/*",
+      "*://www.bandcamp.com/*",
+      "*://github.com/*",
+      "*://www.github.com/*"
+    ],
+    "background": {
+      "service_worker": "service_worker.js",
+      "type": "module"
+    },
+    "options_page": "options.html",
+    "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "64": "icons/icon64.png",
+    "128": "icons/icon128.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png",
+            "48": "icons/icon48.png",
+            "64": "icons/icon64.png",
+            "128": "icons/icon128.png"
+        },
+        "default_title": "PrivacyRedirect+",
+        "default_popup": "popup.html"
+    }
+}

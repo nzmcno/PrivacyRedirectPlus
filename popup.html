@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrivacyRedirect+</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      min-width: 300px;
+      max-width: 350px;
+      margin: 0;
+      padding: 0;
+    }
+    .popup-container {
+      padding: 0.5rem 1rem;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+    }
+    .header h3 {
+      margin: 0;
+    }
+    .toggle-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .options-button {
+      padding: 0.3rem 0.6rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .tab-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .tab-buttons button {
+      flex: 1;
+      padding: 0.5rem;
+      border: none;
+      background: #eee;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .tab-buttons .active {
+      background: #007bff;
+      color: white;
+    }
+    #redirects-tab-content, #quickaccess-tab-content {
+      max-height: 320px;
+      overflow-y: auto;
+    }
+    .quickaccess-category {
+      margin-bottom: 1rem;
+    }
+    .category-title {
+      color: #333;
+      margin: 0.5rem 0;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid #eee;
+      font-size: 0.9rem;
+    }
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .quicklink-button {
+      padding: 0.3rem 0.6rem;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      flex: 0 1 auto;
+    }
+    .quicklink-button:hover {
+      background: #0069d9;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <h3>PrivacyRedirect+</h3>
+      <button id="open-options" class="options-button">Settings</button>
+    </div>
+    
+    <div class="toggle-container">
+      <span>Enable All Redirects</span>
+      <input type="checkbox" id="popup-toggle">
+    </div>
+    
+    <div class="tab-buttons">
+      <button id="redirects-tab" class="active">Redirects</button>
+      <button id="quickaccess-tab">Quick Access</button>
+    </div>
+    
+    <div id="redirects-tab-content">
+      <!-- Redirect toggles will be generated here by JS -->
+    </div>
+    
+    <div id="quickaccess-tab-content" style="display:none">
+      <!-- Quick access links will be generated here by JS -->
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PrivacyRedirect+ Settings</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="tab-buttons">
+      <button id="settings-tab" class="active">Redirect Settings</button>
+      <button id="quicklinks-tab">Quick Access</button>
+    </div>
+
+    <div id="settings-view">
+      <h2>Manage Redirections</h2>
+      <label class="toggle-row">
+        <span>Enable All Redirections</span>
+        <input type="checkbox" id="toggle-global" />
+      </label>
+      <div id="site-options"></div>
+    </div>
+
+    <div id="quicklinks-view" style="display: none;">
+      <h2>Farside Quick Access</h2>
+      <div id="quicklinks-container"></div>
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

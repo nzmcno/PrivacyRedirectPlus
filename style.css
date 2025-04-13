@@ -1,0 +1,77 @@
+body {
+    font-family: system-ui, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  .container {
+    max-width: 650px;
+    margin: 0 auto;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .tab-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tab-buttons button {
+    flex: 1;
+    padding: 0.7rem;
+    font-weight: bold;
+    border: none;
+    background: #eee;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .tab-buttons .active {
+    background: #007bff;
+    color: white;
+  }
+  
+  .toggle-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Updated styles for categorized quick access */
+  .quickaccess-category {
+    margin-bottom: 1.5rem;
+  }
+  
+  .category-title {
+    color: #333;
+    margin: 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .quicklink-button {
+    margin: 0.1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .quicklink-button:hover {
+    background: #0069d9;
+  }
