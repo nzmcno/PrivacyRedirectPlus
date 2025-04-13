@@ -26,13 +26,12 @@
     .header h3 {
       margin: 0;
     }
-    .toggle-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      padding: 0.3rem 0;
-      border-bottom: 1px solid #eee;
+    .global-info {
+      background-color: #f0f8ff;
+      border-left: 3px solid #007bff;
+      padding: 0.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
     }
     .options-button {
       padding: 0.3rem 0.6rem;
@@ -102,9 +101,8 @@
       <button id="open-options" class="options-button">Settings</button>
     </div>
     
-    <div class="toggle-container">
-      <span>Enable All Redirects</span>
-      <input type="checkbox" id="popup-toggle">
+    <div class="global-info">
+      <strong>All Redirects Enabled</strong> (toggle individual sites below)
     </div>
     
     <div class="tab-buttons">

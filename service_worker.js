@@ -45,8 +45,20 @@ chrome.storage.sync.get(["enabled", "customMap"], (res) => {
 // Listen for options updates from the options page
 chrome.runtime.onMessage.addListener((message, _, sendResponse) => {
   if (message.type === "updateSettings") {
-    isRedirectionEnabled = message.enabled;
-    userRedirectMap = { ...DEFAULT_REDIRECT_MAP, ...message.updatedMap };
+    isRedirectionEnabled = message.enabled !== false; // Default to true if not specified
+    
+    if (message.updatedMap) {
+      userRedirectMap = { ...DEFAULT_REDIRECT_MAP, ...message.updatedMap };
+    }
+    
+    console.log("Settings updated:", { 
+      isRedirectionEnabled, 
+      domainCount: Object.keys(userRedirectMap).length,
+      enabledDomains: Object.entries(userRedirectMap)
+        .filter(([_, value]) => value !== "")
+        .length
+    });
+    
     sendResponse({ status: "settings_updated" });
   }
   return true;
@@ -58,7 +70,11 @@ chrome.webNavigation.onBeforeNavigate.addListener(
     // Only process main frame navigations (not iframes, etc)
     if (details.frameId !== 0) return;
     
-    if (!isRedirectionEnabled) return;
+    // Global redirect toggle check
+    if (!isRedirectionEnabled) {
+      console.log("Redirections globally disabled");
+      return;
+    }
     
     try {
       const url = new URL(details.url);
@@ -110,8 +126,14 @@ chrome.webNavigation.onBeforeNavigate.addListener(
 chrome.storage.onChanged.addListener((changes) => {
   if (changes.enabled) {
     isRedirectionEnabled = changes.enabled.newValue;
+    console.log("Global redirect setting changed:", isRedirectionEnabled);
   }
   if (changes.customMap) {
     userRedirectMap = { ...DEFAULT_REDIRECT_MAP, ...changes.customMap.newValue };
+    console.log("Custom map updated, enabled domains:", 
+      Object.entries(userRedirectMap)
+        .filter(([_, value]) => value !== "")
+        .length
+    );
   }
 });

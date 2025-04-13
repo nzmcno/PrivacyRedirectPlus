@@ -91,7 +91,6 @@ const QUICK_LINKS = Object.values(CATEGORIZED_QUICK_LINKS).flat();
 
 document.addEventListener('DOMContentLoaded', () => {
   // Get DOM elements
-  const toggleCheckbox = document.getElementById('popup-toggle');
   const optionsButton = document.getElementById('open-options');
   const redirectsTab = document.getElementById('redirects-tab');
   const quickAccessTab = document.getElementById('quickaccess-tab');
@@ -121,18 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load settings and populate redirect toggles
   loadSettings();
 
-  // Update global toggle when changed
-  toggleCheckbox.addEventListener('change', () => {
-    const enabled = toggleCheckbox.checked;
-    
-    chrome.storage.sync.set({ enabled }, () => {
-      chrome.runtime.sendMessage({
-        type: 'updateSettings',
-        enabled
-      });
-    });
-  });
-
   // Open the options page when button is clicked
   optionsButton.addEventListener('click', () => {
     chrome.runtime.openOptionsPage();
@@ -140,10 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to load settings and populate UI
   function loadSettings() {
-    chrome.storage.sync.get(['enabled', 'customMap'], (result) => {
-      // Set global toggle
-      toggleCheckbox.checked = result.enabled !== false; // Default to true if not set
-      
+    // Ensure global redirect is always enabled
+    chrome.storage.sync.set({ enabled: true }, () => {
+      chrome.runtime.sendMessage({
+        type: 'updateSettings',
+        enabled: true
+      });
+    });
+    
+    chrome.storage.sync.get(['customMap'], (result) => {
       // Get custom map or use default
       const customMap = result.customMap || {};
       
@@ -200,13 +192,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const domains = JSON.parse(event.target.dataset.domains);
     const enabled = event.target.checked;
     
+    console.log(`Toggle changed for ${groupName}: ${enabled}`);
+    
     // Get current custom map
     chrome.storage.sync.get(['customMap'], (result) => {
       const customMap = result.customMap || {};
       
       // Update all domains in this group
       domains.forEach(domain => {
-        customMap[domain] = enabled ? DEFAULT_REDIRECT_MAP[domain] : "";
+        if (enabled) {
+          customMap[domain] = DEFAULT_REDIRECT_MAP[domain];
+        } else {
+          customMap[domain] = "";  // Empty string means disabled
+        }
+        console.log(`Set ${domain} to: ${customMap[domain]}`);
       });
       
       // Save to storage
@@ -215,6 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
         chrome.runtime.sendMessage({
           type: 'updateSettings',
           updatedMap: customMap
+        }, (response) => {
+          console.log("Background script response:", response);
         });
       });
     });

@@ -86,12 +86,22 @@ const CATEGORIZED_QUICK_LINKS = {
 const QUICK_LINKS = Object.values(CATEGORIZED_QUICK_LINKS).flat();
 
 // Settings initialization
-const globalToggle = document.getElementById("toggle-global");
+const globalToggleContainer = document.querySelector('.toggle-row:first-of-type');
 const siteOptions = document.getElementById("site-options");
-chrome.storage.sync.get(["enabled", "customMap"], (res) => {
-  const enabled = res.enabled ?? true;
+
+// Replace global toggle with static text
+globalToggleContainer.innerHTML = '<strong>All Redirects Enabled</strong> (toggle individual sites below)';
+
+// Ensure global redirect is always enabled
+chrome.storage.sync.set({ enabled: true }, () => {
+  chrome.runtime.sendMessage({
+    type: 'updateSettings',
+    enabled: true
+  });
+});
+
+chrome.storage.sync.get(["customMap"], (res) => {
   const customMap = res.customMap ?? DEFAULT_MAP;
-  globalToggle.checked = enabled;
 
   // Track processed groups to avoid duplicates
   const processedGroups = new Set();
@@ -119,10 +129,6 @@ chrome.storage.sync.get(["enabled", "customMap"], (res) => {
   }
 });
 
-globalToggle.addEventListener("change", () => {
-  chrome.storage.sync.set({ enabled: globalToggle.checked }, notifyBackground);
-});
-
 siteOptions.addEventListener("change", (event) => {
   if (event.target.type === "checkbox" && event.target.dataset.group) {
     const groupName = event.target.dataset.group;
@@ -144,10 +150,10 @@ siteOptions.addEventListener("change", (event) => {
 });
 
 function notifyBackground() {
-  chrome.storage.sync.get(["enabled", "customMap"], (res) => {
+  chrome.storage.sync.get(["customMap"], (res) => {
     chrome.runtime.sendMessage({
       type: "updateSettings",
-      enabled: res.enabled ?? true,
+      enabled: true, // Always ensure enabled is true
       updatedMap: res.customMap ?? DEFAULT_MAP
     });
   });
