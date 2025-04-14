@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "PrivacyRedirect+",
     "version": "1.0.0",
-    "description": "Automatically redirect YouTube, Reddit, X and more to their private, open-source alternatives via Farside.link.",
+    "description": "Automatically redirects visits from known platforms to open-source, privacy-friendly alternatives via farside.link.",
     "permissions": ["webNavigation", "storage"],
     "host_permissions": [
       "*://www.reddit.com/*",

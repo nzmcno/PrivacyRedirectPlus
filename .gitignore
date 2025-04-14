@@ -36,3 +36,5 @@ dist/
 *.bak
 *.log
 logs/
+
+privacy_services.js
