@@ -17,7 +17,7 @@
 ## 💾 Installation
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/Chrome-Get_Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Chrome Web Store"></a>
+  <a href="https://chromewebstore.google.com/detail/privacyredirect+/hgddaoemcmlgbhjcnolmdnhfmmpblihf"><img src="https://img.shields.io/badge/Chrome-Get_Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Chrome Web Store"></a>
   <a href="#"><img src="https://img.shields.io/badge/Firefox-Get_Add--on-FF7139?style=for-the-badge&logo=firefox-browser&logoColor=white" alt="Firefox Add-ons"></a>
   <a href="#"><img src="https://img.shields.io/badge/Edge-Get_Extension-0078D7?style=for-the-badge&logo=microsoft-edge&logoColor=white" alt="Edge Add-ons"></a>
 </p>
